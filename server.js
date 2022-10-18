@@ -3,10 +3,12 @@ const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
 const api = require('./routes/index.js');
+const notesjs =require('./routes/notes.js'); 
 
 // Adding port
-const PORT = process.env.port || 3001;
 const app = express();
+const PORT = process.env.port || 3001;
+
 
 // Importing middleware "clog"
 app.use(clog);
@@ -15,6 +17,7 @@ app.use(clog);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
+app.use('/notesjs',notesjs);
 app.use(express.static('public'));
 
 // Routes to index.html
@@ -24,7 +27,7 @@ app.get('/', (req, res) =>
 
 //Routes to notes.html when run with /notes parameter
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 app.listen(PORT, () =>
