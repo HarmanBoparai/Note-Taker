@@ -5,12 +5,12 @@ const fs = require("fs");
 const uuidv4 = require('uuid');
 
 // GET Route for retrieving all the notes
-notes.get('/', (req, res) => {
+notes.get('/notes', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
   });
 
 // POST Route for a new notes
-    notes.post('/', (req, res) => {
+    notes.post('/notes', (req, res) => {
         console.log(req.body);
       
         const { text, title,note_id: uuidv4 } = req.body;
@@ -23,9 +23,9 @@ notes.get('/', (req, res) => {
           };
       
           readAndAppend(newNote, './db/db.json');
-          res.json(`Tip added successfully 🚀`);
+          res.json(`Note added successfully 🚀`);
         } else {
-          res.error('Error in adding tip');
+          res.error('Error in adding note');
         }
       });
     
