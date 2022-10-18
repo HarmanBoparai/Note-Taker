@@ -1,7 +1,7 @@
 //Import express package and declared other variables
 const express = require('express');
 const path = require('path');
-//const { clog } = require('./public/middleware/clog');
+const { clog } = require('./public/middleware/clog');
 
 const notesjs =require('./routes/notes.js'); 
 
@@ -11,12 +11,12 @@ const PORT = process.env.port || 3001;
 
 
 // Importing middleware "clog"
-// app.use(clog);
+ app.use(clog);
 
 //Using Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/notes',notesjs);
+app.use('/api',notesjs);
 app.use(express.static('public'));
 
 // Routes to index.html

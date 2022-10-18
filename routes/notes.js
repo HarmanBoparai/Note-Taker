@@ -2,7 +2,7 @@
 const notes = require('express').Router();
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 const fs = require("fs");
-const uuidv4 = require('uuid');
+const {v4: uuidv4 } = require('uuid');
 
 // GET Route for retrieving all the notes
 notes.get('/notes', (req, res) => {
@@ -13,7 +13,7 @@ notes.get('/notes', (req, res) => {
     notes.post('/notes', (req, res) => {
         console.log(req.body);
       
-        const { text, title,note_id: uuidv4 } = req.body;
+        const { text, title } = req.body;
       
         if (req.body) {
           const newNote = {
