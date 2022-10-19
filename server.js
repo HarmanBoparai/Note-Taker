@@ -7,7 +7,7 @@ const notesjs =require('./routes/notes.js');
 
 // Adding port
 const app = express();
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 
 // Importing middleware "clog"
