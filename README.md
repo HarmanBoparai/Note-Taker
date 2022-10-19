@@ -3,10 +3,10 @@
 ## Description
 This app helps in creating online note taker using Express.js
 
-##Installation
+## Installation
 It needs to install node modules by using npm install
 
-##Usage
+## Usage
 https://haman-note-taker.herokuapp.com/
 
 ![Screenshot 2](https://user-images.githubusercontent.com/112586779/196579580-75e76173-0874-4325-bff9-66677612e341.png)
