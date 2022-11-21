@@ -1,5 +1,9 @@
 const fs = require('fs');
 const util = require('util');
+const uniqueId = () =>
+  Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
 
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
@@ -27,6 +31,18 @@ const writeToFile = (destination, content) =>
       }
     });
   };
+
+  const deleteItem = (delId, file) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        const parsedData = JSON.parse(data);
+        const newData = parsedData.filter(note => note.id !== delId);
+        writeToFile(file, newData);
+    }
+  });
+  }
   
-  module.exports = { readFromFile, writeToFile, readAndAppend };
+  module.exports = { readFromFile, writeToFile, readAndAppend,uniqueId, deleteItem };
   
